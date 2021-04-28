@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <title>Dashboard - Cliente</title>
+    <title>Dashboard - PDA</title>
 </head>
 <body class="text-center">
 <style>
@@ -118,7 +118,7 @@
 
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="login-cliente.php">Esci dall'account</a>
+            <a class="nav-link" href="login-pda.php">Esci dall'account</a>
         </li>
     </ul>
 </header>
@@ -129,13 +129,19 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard-cliente.php">
+                        <a class="nav-link" aria-current="page" href="dashboard-pda.php">
                             <span data-feather="home"></span>
                             I miei ticket
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard-ticket-chiusi-cliente.php">
+                        <a class="nav-link" href="dashboard-ticket-coda-pda.php">
+                            <span data-feather="ticket-in-queue"></span>
+                            Ticket in coda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard-ticket-chiusi-pda.php">
                             <span data-feather="closed-ticket"></span>
                             Ticket chiusi
                         </a>
@@ -147,13 +153,13 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard Cliente</h1>
+                <h1 class="h2">Dashboard PDA</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-sm btn-outline-primary">Crea un ticket</button>
+                    <!--<button type="button" class="btn btn-sm btn-outline-primary">Crea un ticket</button>-->
                 </div>
             </div>
 
-            <h2>I miei ticket</h2>
+            <h2>Ticket chiusi</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>

@@ -129,13 +129,13 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard-cliente.php">
+                        <a class="nav-link" aria-current="page" href="dashboard-cliente.php">
                             <span data-feather="home"></span>
                             I miei ticket
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard-ticket-chiusi-cliente.php">
+                        <a class="nav-link active" href="dashboard-ticket-chiusi-cliente.php">
                             <span data-feather="closed-ticket"></span>
                             Ticket chiusi
                         </a>
@@ -153,7 +153,7 @@
                 </div>
             </div>
 
-            <h2>I miei ticket</h2>
+            <h2>Ticket chiusi</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
