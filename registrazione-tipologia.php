@@ -63,7 +63,7 @@
             </select>
             <label for="floatingInput">Tipo account</label>
         </div>
-        <br><br>
+        <br>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Continua</button>
         <br><br>
         <a href="index.html">Torna alla pagina iniziale</a>
