@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="script/bootstrap.bundle.min.js"></script>
     <title>Dashboard - PDA</title>
 </head>
 <body class="text-center">
@@ -79,6 +80,10 @@
      * Navbar
      */
 
+    #disabled {
+        background-color: rgb(33, 37, 41);
+    }
+
     .navbar-brand {
         padding-top: .75rem;
         padding-bottom: .75rem;
@@ -118,7 +123,7 @@ session_start();
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
+    <input id="disabled" class="form-control form-control-dark w-100" type="text" placeholder="" aria-label="" disabled>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="login-pda.php">Esci dall'account</a>
@@ -156,7 +161,7 @@ session_start();
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2"><?php echo "Benvenuto " . $_SESSION['nome'] .  "!"?></h1>
+                <h1 class="h2"><?php echo "Benvenuto " . $_SESSION['nome_pda'] .  "!"?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <!--<button type="button" class="btn btn-sm btn-outline-primary">Crea un ticket</button>-->
                 </div>

@@ -55,7 +55,7 @@
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">
             <div class="col-md-12">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
+                <input type="email" class="form-control" id="email" name="email_cliente" placeholder="email@example.com">
             </div>
         </div>
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">
@@ -65,9 +65,11 @@
             </div>
             <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
         </div>
+
+        <input type="text" name="cliente" value="cliente" hidden />
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Registrati</button>
         <br><br>

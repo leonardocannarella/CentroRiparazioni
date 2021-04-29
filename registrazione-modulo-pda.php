@@ -57,9 +57,11 @@
             </div>
             <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
         </div>
+
+        <input type="text" name="pda" value="pda" hidden />
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Registrati</button>
         <br><br>
