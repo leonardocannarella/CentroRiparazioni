@@ -56,8 +56,8 @@
         <h1 class="h3 mb-3 fw-normal">PDA</h1>
 
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="example@email.com" name="email" required>
-            <label for="floatingInput">Email</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username" required>
+            <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
