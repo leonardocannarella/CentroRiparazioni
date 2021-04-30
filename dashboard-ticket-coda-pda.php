@@ -119,7 +119,7 @@
 session_start();
 require ('connessione.php');
 
-$query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.modello,s.descrizione
+$query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.modello,s.titolo
             FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p
             WHERE t.id_pda=p.username 
             AND t.id_dispositivo=d.id
@@ -214,7 +214,7 @@ mysqli_close($connessione);
                                 <td><?php echo $row['data_fine_stimata'];?></td>
                                 <td><?php echo $row['marca'];?></td>
                                 <td><?php echo $row['modello'];?></td>
-                                <td><?php echo $row['descrizione'];?></td>
+                                <td><span class="badge bg-warning"><?php echo $row['titolo'];?></span></td>
                                 <td>
                                     <form action="assegna-ticket-pda.php" method="post">
                                         <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
