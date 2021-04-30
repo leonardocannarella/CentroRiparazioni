@@ -216,16 +216,10 @@ mysqli_close($connessione);
                                 <td><?php echo $row['modello'];?></td>
                                 <td><?php echo $row['descrizione'];?></td>
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <form action="dettagli-ticket-pda.php" method="post">
-                                            <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
-                                            <button class="btn btn-primary btn-sm" type="submit">Modifica</button>
-                                        </form>
-                                        <form action="elimina-ticket-pda.php" method="post">
-                                            <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
-                                            <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
-                                        </form>
-                                    </div>
+                                    <form action="assegna-ticket-pda.php" method="post">
+                                        <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                        <button class="btn btn-primary btn-sm" type="submit">Assegna a me</button>
+                                    </form>
                                 </td>
                                 <?php
                             }
