@@ -126,7 +126,8 @@ $query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.mod
             AND t.id_stato_intervento=s.id
             AND d.id_cliente=c.username
             AND t.id_pda='{$_SESSION["username_pda"]}'
-            AND t.id_stato_intervento=0";
+            AND t.id_stato_intervento=0
+            ORDER BY data_fine_stimata ASC";
 
 $result = mysqli_query($connessione, $query);
 
@@ -216,16 +217,20 @@ mysqli_close($connessione);
                                 <td><?php echo $row['modello'];?></td>
                                 <td><span class="badge bg-warning"><?php echo $row['titolo'];?></span></td>
                                 <td>
-                                    <form action="assegna-ticket-pda.php" method="post">
+                                    <form action="dettagli-ticket-pda.php" method="post">
                                         <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
                                         <button class="btn btn-primary btn-sm" type="submit">Assegna a me</button>
                                     </form>
+                                    <form action="elimina-ticket-pda.php" method="post">
+                                        <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                        <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
+                                    </form>
                                 </td>
+                            </tr>
                                 <?php
                             }
                         }
                         ?>
-                    </tr>
                     </tbody>
                 </table>
             </div>

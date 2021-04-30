@@ -120,17 +120,14 @@
 session_start();
 require ('connessione.php');
 
-$query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.modello,s.titolo
+$query = "  SELECT t.id,t.data_invio_richiesta,t.descrizione_problema,t.prezzo,c.nome as cnome,c.cognome,t.data_fine_stimata,d.marca,p.nome,d.modello,s.titolo
             FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p
             WHERE t.id_pda=p.username 
             AND t.id_dispositivo=d.id
             AND t.id_stato_intervento=s.id
             AND d.id_cliente=c.username
-            AND t.id_pda='{$_SESSION["username_pda"]}'
-            AND (t.id_stato_intervento=1
-            OR t.id_stato_intervento=2)
-            ORDER BY data_fine_stimata ASC";
-
+            AND t.id='{$_POST['id_ticket']}'
+            AND t.id_pda='{$_SESSION["username_pda"]}'";
 $result = mysqli_query($connessione, $query);
 
 mysqli_close($connessione);
@@ -154,7 +151,7 @@ mysqli_close($connessione);
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dashboard-pda.php">
+                        <a class="nav-link" aria-current="page" href="dashboard-pda.php">
                             <span data-feather="home"></span>
                             I miei ticket
                         </a>
@@ -178,22 +175,23 @@ mysqli_close($connessione);
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2"><?php echo "Benvenuto " . $_SESSION['nome_pda'] .  "!"?></h1>
+                <h1 class="h2"><?php echo "Dettagli Ticket #" . $_POST['id_ticket'];?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <!--<button type="button" class="btn btn-sm btn-outline-primary">Crea un ticket</button>-->
                 </div>
             </div>
-
-            <h2>I miei ticket</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>Ticket ID</th>
                         <th>Data invio richiesta</th>
                         <th>Data fine stimata</th>
+                        <th>Nome e cognome cliente</th>
                         <th>Marca</th>
                         <th>Modello</th>
+                        <th>Descrizione</th>
+                        <th>Prezzo</th>
+                        <th>PDA Riferimento</th>
                         <th>Stato</th>
                         <th>Altro</th>
                     </tr>
@@ -203,34 +201,48 @@ mysqli_close($connessione);
                         <?php
                         if (mysqli_num_rows($result) == 0)
                         {
-                        ?>
+                            ?>
                             <h2>Non sono presenti ticket.</h2>
-                        <?php
+                            <?php
                         }
                         else
                         {
                             while($row = mysqli_fetch_array($result))
                             {
                                 ?>
-                                    <td><?php echo $row['id'];?></td>
+                                <form action="modifica-ticket-pda.php" method="post">
                                     <td><?php echo $row['data_invio_richiesta'];?></td>
-                                    <td><?php echo $row['data_fine_stimata'];?></td>
+                                    <td>
+                                        <input type="date" class="form-control" id="data_fine_stimata" name="data_fine_stimata" value="<?php echo $row['data_fine_stimata'];?>" required/>
+                                    </td>
+                                    <td><?php echo $row['cnome'] . " " . $row['cognome'];?></td>
                                     <td><?php echo $row['marca'];?></td>
                                     <td><?php echo $row['modello'];?></td>
-                                    <td><span class="badge bg-primary"><?php echo $row['titolo'];?></span></td>
+                                    <td><input type="text" class="form-control" id="descrizione_problema" name="descrizione_problema" value="<?php echo $row['descrizione_problema'];?>" /></td>
+                                    <td>
+                                        <input type="number" class="form-control" name="prezzo" min="1" value="<?php echo $row['prezzo'];?>" aria-label="Prezzo" required />
+                                    </td>
+                                    <td><?php echo $row['nome'];?></td>
+                                    <td>
+                                        <label for="stato_ticket">
+                                            <select id="stato_ticket" class="form-select" name="stato_ticket" required>
+                                                <option value="" selected></option>
+                                                <option value="0">IN CODA</option>
+                                                <option value="1">APERTO</option>
+                                                <option value="2">IN_RIPARAZIONE</option>
+                                                <option value="3">CHIUSO</option>
+                                            </select>
+                                            Stato attuale: <b><span class="badge bg-secondary"><?php echo $row['titolo'];?></span>
+                                        </label>
+                                    </td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <form action="dettagli-ticket-pda.php" method="post">
-                                                <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
-                                                <button class="btn btn-primary btn-sm" type="submit">Dettagli</button>
-                                            </form>
-                                            <form action="elimina-ticket-pda.php" method="post">
-                                                <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
-                                                <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
-                                            </form>
+                                            <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                            <button class="btn btn-primary btn-sm" type="submit">Modifica</button>
                                         </div>
                                     </td>
-                                </tr>
+                                </form>
+                            </tr>
                                 <?php
                             }
                         }

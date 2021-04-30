@@ -126,7 +126,8 @@ $query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.mod
             AND t.id_stato_intervento=s.id
             AND d.id_cliente=c.username
             AND t.id_pda='{$_SESSION["username_pda"]}'
-            AND t.id_stato_intervento=3";
+            AND t.id_stato_intervento=3
+            ORDER BY data_fine_stimata ASC";
 
 $result = mysqli_query($connessione, $query);
 
@@ -227,11 +228,11 @@ mysqli_close($connessione);
                                         </form>
                                     </div>
                                 </td>
+                            </tr>
                                 <?php
                             }
                         }
                         ?>
-                    </tr>
                     </tbody>
                 </table>
             </div>
