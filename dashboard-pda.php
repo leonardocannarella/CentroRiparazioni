@@ -127,8 +127,8 @@ $query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.mod
             AND t.id_stato_intervento=s.id
             AND d.id_cliente=c.username
             AND t.id_pda='{$_SESSION["username_pda"]}'
-            AND t.id_stato_intervento=1
-            OR t.id_stato_intervento=2";
+            AND (t.id_stato_intervento=1
+            OR t.id_stato_intervento=2)";
 
 $result = mysqli_query($connessione, $query);
 
