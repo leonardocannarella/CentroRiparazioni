@@ -27,13 +27,13 @@ else if(isset($_POST['pda']))
 
     if (mysqli_num_rows($result) != 0)
     {
-        echo "PDA già esistente";
+        include 'html/registrazione-pda-pagina-errore.html';
     }
     else
     {
         $query = "INSERT INTO pda VALUES ('$username_pda','$password_pda','$nome_pda','$citta_pda')";
         $result = mysqli_query($connessione, $query);
-        echo "Registrazione effettuata con successo! Ora verrai reindirizzato alla pagina di login per effettuare l'accesso.";
+        include 'html/registrazione-pda-pagina-successo.html';
         header("refresh:3;url=login-pda.php");
     }
 }
@@ -50,13 +50,13 @@ else {
 
     if (mysqli_num_rows($result) != 0)
     {
-        echo "Cliente già esistente";
+        include 'html/registrazione-cliente-pagina-errore.html';
     }
     else
     {
         $query = "INSERT INTO cliente VALUES ('$username_cliente','$password_cliente','$nome_cliente','$cognome_cliente','$telefono_cliente','$email_cliente')";
         $result = mysqli_query($connessione, $query);
-        echo "Registrazione effettuata con successo! Ora verrai reindirizzato alla pagina di login per effettuare l'accesso.";
+        include 'html/registrazione-cliente-pagina-successo.html';
         header("refresh:3;url=login-cliente.php");
     }
 }

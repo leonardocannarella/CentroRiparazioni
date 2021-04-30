@@ -18,12 +18,7 @@ if (mysqli_num_rows($result) != 0)
 }
 else
 {
-    echo "Nome utente e/o password incorretti.";
-    ?>
-    <form action="login-cliente.php">
-        <button class="btn btn-primary">Torna al Login</button>
-    </form>
-    <?php
+    include 'html/login-cliente-pagina-errore.html';
 }
 mysqli_close($connessione);
 ?>

@@ -17,12 +17,7 @@ if (mysqli_num_rows($result) != 0)
 }
 else
 {
-    echo "Nome utente e/o password incorretti.";
-    ?>
-    <form action="login-pda.php">
-        <button class="btn btn-primary">Torna al Login</button>
-    </form>
-<?php
+    include 'html/login-pda-pagina-errore.html';
 }
 mysqli_close($connessione);
 ?>

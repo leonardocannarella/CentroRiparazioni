@@ -48,14 +48,14 @@
         </div>
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">
             <div class="col-md-12">
-                <label for="telefono_cliente" class="form-label">Telefono</label>
-                <input type="phone" class="form-control" id="telefono_cliente" name="telefono_cliente" placeholder="Il tuo numero di telefono">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email_cliente" placeholder="email@example.com">
             </div>
         </div>
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">
             <div class="col-md-12">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email_cliente" placeholder="email@example.com">
+                <label for="telefono_cliente" class="form-label">Telefono</label>
+                <input type="phone" class="form-control" id="telefono_cliente" name="telefono_cliente" placeholder="Il tuo numero di telefono">
             </div>
         </div>
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">
