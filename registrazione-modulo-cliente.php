@@ -49,7 +49,7 @@
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">
             <div class="col-md-12">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email_cliente" placeholder="email@example.com">
+                <input type="email" class="form-control" id="email" name="email_cliente" placeholder="email@example.com" required>
             </div>
         </div>
         <div class="row align-items-md-stretch" style="margin-bottom: 5%;">

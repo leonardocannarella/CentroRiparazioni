@@ -219,7 +219,7 @@ mysqli_close($connessione);
                                     <div class="btn-group" role="group">
                                         <form action="dettagli-ticket-pda.php" method="post">
                                             <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
-                                            <button class="btn btn-primary btn-sm" type="submit">Modifica</button>
+                                            <button class="btn btn-primary btn-sm" type="submit">Dettagli</button>
                                         </form>
                                         <form action="elimina-ticket-pda.php" method="post">
                                             <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
