@@ -118,6 +118,21 @@
 </style>
 <?php
 session_start();
+require ('connessione.php');
+
+$query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.modello,s.descrizione
+            FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p
+            WHERE t.id_pda=p.username 
+            AND t.id_dispositivo=d.id
+            AND t.id_stato_intervento=s.id
+            AND d.id_cliente=c.username
+            AND t.id_pda='{$_SESSION["username_pda"]}'
+            AND t.id_stato_intervento=1
+            OR t.id_stato_intervento=2";
+
+$result = mysqli_query($connessione, $query);
+
+mysqli_close($connessione);
 ?>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Centro Riparazioni</a>
@@ -173,20 +188,51 @@ session_start();
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>Ticket ID</th>
+                        <th>Data invio richiesta</th>
+                        <th>Data fine stimata</th>
+                        <th>Marca</th>
+                        <th>Modello</th>
+                        <th>Stato</th>
+                        <th>Altro</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                        <td>text</td>
+                        <?php
+                        if (mysqli_num_rows($result) == 0)
+                        {
+                        ?>
+                            <h2>Non sono presenti ticket.</h2>
+                        <?php
+                        }
+                        else
+                        {
+                            while($row = mysqli_fetch_array($result))
+                            {
+                                ?>
+                                    <td><?php echo $row['id'];?></td>
+                                    <td><?php echo $row['data_invio_richiesta'];?></td>
+                                    <td><?php echo $row['data_fine_stimata'];?></td>
+                                    <td><?php echo $row['marca'];?></td>
+                                    <td><?php echo $row['modello'];?></td>
+                                    <td><?php echo $row['descrizione'];?></td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <form action="dettagli-ticket-pda.php" method="post">
+                                                <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                                <button class="btn btn-primary btn-sm" type="submit">Modifica</button>
+                                            </form>
+                                            <form action="elimina-ticket-pda.php" method="post">
+                                                <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                                <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                <?php
+                            }
+                        }
+                        ?>
                     </tr>
                     </tbody>
                 </table>
