@@ -117,6 +117,21 @@
 </style>
 <?php
 session_start();
+require ('connessione.php');
+
+$query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,p.nome,d.marca,d.modello,s.titolo
+            FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p
+            WHERE t.id_pda=p.username 
+            AND t.id_dispositivo=d.id
+            AND t.id_stato_intervento=s.id
+            AND d.id_cliente=c.username
+            AND c.username='{$_SESSION["username_cliente"]}'
+            AND NOT t.id_stato_intervento=3
+            ORDER BY data_fine_stimata ASC";
+
+$result = mysqli_query($connessione, $query);
+
+mysqli_close($connessione);
 ?>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Centro Riparazioni</a>
@@ -157,7 +172,9 @@ session_start();
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2"><?php echo "Benvenuto " . $_SESSION['nome_cliente'] . " " . $_SESSION['cognome_cliente'] . "!";?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-sm btn-outline-primary">Crea un ticket</button>
+                    <form action="aggiungi-ticket-cliente.php">
+                        <button type="submit" class="btn btn-sm btn-primary">+ Crea un ticket</button>
+                    </form>
                 </div>
             </div>
 
@@ -166,21 +183,74 @@ session_start();
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>Ticket ID</th>
+                        <th>Data invio richiesta</th>
+                        <th>Data fine stimata</th>
+                        <th>Marca</th>
+                        <th>Modello</th>
+                        <th>PDA Riferimento</th>
+                        <th>Stato</th>
+                        <th>Altro</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                        <td>text</td>
+                        <?php
+                        if (mysqli_num_rows($result) == 0)
+                        {
+                            ?>
+                            <h2>Non sono presenti ticket.</h2>
+                            <?php
+                        }
+                        else
+                        {
+                        while($row = mysqli_fetch_array($result))
+                        {
+                        ?>
+                        <td><?php echo $row['id'];?></td>
+                        <td><?php echo $row['data_invio_richiesta'];?></td>
+                        <td><?php echo $row['data_fine_stimata'];?></td>
+                        <td><?php echo $row['marca'];?></td>
+                        <td><?php echo $row['modello'];?></td>
+                        <td><?php echo $row['nome'];?></td>
+                        <td>
+                            <?php
+                            switch($row['titolo'])
+                            {
+                                case "IN CODA":
+                                    ?><span class="badge bg-warning"><?php echo $row['titolo']?></span>
+                                    <?php break;
+                                case "IN_RIPARAZIONE":
+                                case "APERTO":
+                                    ?><span class="badge bg-primary"><?php echo $row['titolo']?></span>
+                                    <?php break;
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <form action="dettagli-ticket-cliente.php" method="post">
+                                    <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                    <button class="btn btn-primary btn-sm" type="submit">Dettagli</button>
+                                </form>
+                                <?php
+                                if($row['titolo']=="IN CODA")
+                                {
+                                    ?>
+                                <form action="elimina-ticket-cliente.php" method="post">
+                                    <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
+                                    <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
+                                </form>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </td>
                     </tr>
+                    <?php
+                    }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
