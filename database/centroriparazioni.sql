@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 29, 2021 alle 09:46
+-- Creato il: Mag 03, 2021 alle 09:15
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cliente` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `nome` varchar(30) NOT NULL,
   `cognome` varchar(30) NOT NULL,
   `telefono` varchar(30) NOT NULL,
@@ -41,9 +41,14 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`username`, `password`, `nome`, `cognome`, `telefono`, `email`) VALUES
+('', '', '', '', '', ''),
 ('alberto_verdi', 'alberto', 'Alberto', 'Verdi', '7478585896', 'albertoverdi@email.it'),
+('cristian_signoretti', 'cristian', 'Cristian', 'Signoretti', '58478455656', 'Cristian135@outlook.it'),
+('leonardo_cannarella', 'leonardo', 'Leonardo', 'Cannarella', '3412548963', 'leonardocannarella@prova.it'),
 ('luigi_bianchi', 'luigi', 'Luigi', 'Bianchi', '25479648885', 'luigibianchi@email.it'),
 ('mario_rossi', 'mario', 'Mario', 'Rossi', '1237548296', 'mariorossi@email.it'),
+('matteo_baldaccioni', 'matteo', 'Matteo', 'Baldaccioni', '145266325544', 'matteo.baldaccioni@gmail.com'),
+('nuriel', '123', 'Nuriel', 'Crescentini', '3665047724', 'nuriel.crescentini02@gmail.com'),
 ('stefano_viola', 'stefano', 'Stefano', 'Viola', '4242868685', 'stefanoviola@email.it');
 
 -- --------------------------------------------------------
@@ -65,10 +70,7 @@ CREATE TABLE `dispositivo` (
 --
 
 INSERT INTO `dispositivo` (`id`, `marca`, `modello`, `id_tipologia_dispositivo`, `id_cliente`) VALUES
-(1, 'Samsung', 'Galaxy S3', 1, 'alberto_verdi'),
-(2, 'LG', 'Tv QLED 45\"', 2, 'luigi_bianchi'),
-(3, 'Asus', 'Q2', 1, 'mario_rossi'),
-(4, 'Samsung', 'Curved 50\"', 2, 'stefano_viola');
+(25, 'Cane', 'Yorkshire 2', 1, 'cristian_signoretti');
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,7 @@ INSERT INTO `dispositivo` (`id`, `marca`, `modello`, `id_tipologia_dispositivo`,
 
 CREATE TABLE `pda` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `nome` varchar(30) NOT NULL,
   `citta` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -88,10 +90,14 @@ CREATE TABLE `pda` (
 --
 
 INSERT INTO `pda` (`username`, `password`, `nome`, `citta`) VALUES
+('pda_ancona', 'ancona', 'C.A. Ancona', 'Ancona'),
 ('pda_fano', 'fano', 'C.A. Fano', 'Fano'),
+('pda_frontino', 'frontino', 'C.A. Frontino', 'Frontino'),
 ('pda_pesaro', 'pesaro', 'C.A. Pesaro', 'Pesaro'),
+('pda_rimini', 'rimini', 'C.A. Rimini', 'Rimini'),
 ('pda_urbino', 'urbino', 'C.A. Urbino', 'Urbino'),
-('pda_vallefoglia', 'vallefoglia', 'C.A. Vallefoglia', 'Vallefoglia');
+('pda_vallefoglia', 'vallefoglia', 'C.A. Vallefoglia', 'Vallefoglia'),
+('signomotors', '123', 'SignoMotors', 'Pesaro');
 
 -- --------------------------------------------------------
 
@@ -137,10 +143,7 @@ CREATE TABLE `ticket_intervento` (
 --
 
 INSERT INTO `ticket_intervento` (`id`, `descrizione_problema`, `data_invio_richiesta`, `data_fine_stimata`, `prezzo`, `id_pda`, `id_dispositivo`, `id_stato_intervento`) VALUES
-(1, 'Schermo rotto', '2021-04-12', '2021-04-27', 50.00, 'pda_fano', 1, 0),
-(2, 'Burn-In', '2021-04-15', '2021-04-30', 100.00, 'pda_pesaro', 2, 0),
-(3, 'Pixel bruciati', '2021-04-22', '2021-04-29', 20.99, 'pda_urbino', 3, 0),
-(4, 'Connettore difettoso', '2021-04-24', '2021-04-29', 30.00, 'pda_vallefoglia', 4, 0);
+(19, 'non abbaia più', '2021-05-03', '2021-05-29', 50.00, 'pda_pesaro', 25, 3);
 
 -- --------------------------------------------------------
 
@@ -214,13 +217,13 @@ ALTER TABLE `tipologia_dispositivo`
 -- AUTO_INCREMENT per la tabella `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT per la tabella `ticket_intervento`
 --
 ALTER TABLE `ticket_intervento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Limiti per le tabelle scaricate

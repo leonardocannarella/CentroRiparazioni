@@ -16,7 +16,7 @@ $result1 = mysqli_query($connessione, $query1);
 mysqli_close($connessione);
 
 require ('connessione.php');
-$query1 = "SELECT id FROM dispositivo WHERE id_cliente='$username_cliente'";
+$query1 = "SELECT id FROM dispositivo WHERE id_cliente='$username_cliente' ORDER BY id DESC";
 $result1 = mysqli_query($connessione, $query1);
 $row1 = mysqli_fetch_array($result1);
 mysqli_close($connessione);

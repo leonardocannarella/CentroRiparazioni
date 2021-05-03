@@ -120,15 +120,20 @@
 session_start();
 require ('connessione.php');
 
-$query = "  SELECT t.id,t.data_invio_richiesta,t.descrizione_problema,t.prezzo,c.nome as cnome,c.cognome,t.data_fine_stimata,d.marca,p.nome,d.modello,s.titolo
-            FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p
+$query = "  SELECT t.id,t.data_invio_richiesta,t.descrizione_problema,t.prezzo,c.nome as cnome,c.cognome,t.data_fine_stimata,d.marca,p.nome,d.modello,s.titolo,td.descrizione as tipologia_d
+            FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p, tipologia_dispositivo as td
             WHERE t.id_pda=p.username 
             AND t.id_dispositivo=d.id
             AND t.id_stato_intervento=s.id
             AND d.id_cliente=c.username
+            AND d.id_tipologia_dispositivo = td.id
             AND t.id='{$_POST['id_ticket']}'
             AND t.id_pda='{$_SESSION["username_pda"]}'";
 $result = mysqli_query($connessione, $query);
+
+$result1 = mysqli_query($connessione, $query);
+
+$row1 = mysqli_fetch_array($result1);
 
 mysqli_close($connessione);
 ?>
@@ -175,7 +180,7 @@ mysqli_close($connessione);
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2"><?php echo "Dettagli Ticket #" . $_POST['id_ticket'];?></h1>
+                <h1 class="h2"><?php echo "Dettagli Ticket #" . $_POST['id_ticket'] . " - " . "Tipologia: " . $row1['tipologia_d'];?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <!--<button type="button" class="btn btn-sm btn-outline-primary">Crea un ticket</button>-->
                 </div>

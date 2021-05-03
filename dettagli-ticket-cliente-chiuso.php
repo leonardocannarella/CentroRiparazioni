@@ -191,7 +191,6 @@ mysqli_close($connessione);
                         <th>Prezzo</th>
                         <th>PDA Riferimento</th>
                         <th>Stato</th>
-                        <th>Altro</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -212,18 +211,12 @@ mysqli_close($connessione);
                             <td><?php echo $row['data_invio_richiesta'];?></td>
                             <td><?php echo $row['data_fine_stimata'];?></td>
                             <td><?php echo $row['cnome'] . " " . $row['cognome'];?></td>
-                            <td><input type="text" class="form-control" id="marca" name="marca" value="<?php echo $row['marca'];?>" required/></td>
-                            <td><input type="text" class="form-control" id="modello" name="modello" value="<?php echo $row['modello'];?>" required/></td>
-                            <td><input type="text" class="form-control" id="descrizione_problema" name="descrizione_problema" value="<?php echo $row['descrizione_problema'];?>" /></td>
+                            <td><?php echo $row['marca'];?></td>
+                            <td><?php echo $row['modello'];?></td>
+                            <td><?php echo $row['descrizione_problema'];?></td>
                             <td><?php echo $row['prezzo'];?></td>
                             <td><?php echo $row['nome'];?></td>
                             <td><b><span class="badge bg-secondary"><?php echo $row['titolo'];?></span></td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
-                                    <button class="btn btn-primary btn-sm" type="submit">Modifica</button>
-                                </div>
-                            </td>
                         </form>
                     </tr>
                     <?php
@@ -237,4 +230,4 @@ mysqli_close($connessione);
     </div>
 </div>
 </body>
-</html><?php
+</html>

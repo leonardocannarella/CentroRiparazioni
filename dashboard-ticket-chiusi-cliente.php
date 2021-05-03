@@ -215,7 +215,7 @@ mysqli_close($connessione);
                         <td><span class="badge bg-danger"><?php echo $row['titolo']?></span></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <form action="dettagli-ticket-cliente.php" method="post">
+                                <form action="dettagli-ticket-cliente-chiuso.php" method="post">
                                     <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
                                     <button class="btn btn-primary btn-sm" type="submit">Dettagli</button>
                                 </form>
