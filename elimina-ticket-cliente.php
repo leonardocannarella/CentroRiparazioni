@@ -1,5 +1,6 @@
 <?php
 session_start();
+require ('controllo-credenziali-cliente.php');
 require ('connessione.php');
 $id_ticket = $_POST['id_ticket'];
 

@@ -7,6 +7,23 @@
     <title>Area riservata - PDA</title>
 </head>
 <body class="text-center">
+<?php
+session_start();
+include 'creazione-sessione.php';
+
+if($_SESSION['username_pda'] != "")
+{
+    header("Location: dashboard-pda.php");
+    die;
+}
+
+if($_SESSION['username_cliente'] != "")
+{
+    header("Location: dashboard-cliente.php");
+    die;
+}
+
+?>
 <style>
     html,
     body {

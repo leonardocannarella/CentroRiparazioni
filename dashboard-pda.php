@@ -118,6 +118,7 @@
 </style>
 <?php
 session_start();
+require ('controllo-credenziali-pda.php');
 require ('connessione.php');
 
 $query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.modello,s.titolo
@@ -143,7 +144,7 @@ mysqli_close($connessione);
     <input id="disabled" class="form-control form-control-dark w-100" type="text" placeholder="" aria-label="" disabled>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="login-pda.php">Esci dall'account</a>
+            <a class="nav-link" href="logout.php">Esci dall'account</a>
         </li>
     </ul>
 </header>

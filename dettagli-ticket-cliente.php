@@ -118,6 +118,7 @@
 </style>
 <?php
 session_start();
+require ('controllo-credenziali-cliente.php');
 require ('connessione.php');
 
 $query = "  SELECT t.id,t.data_invio_richiesta,t.descrizione_problema,t.prezzo,c.nome as cnome,c.cognome,t.data_fine_stimata,d.marca,p.nome,d.modello,s.titolo,td.descrizione as tipologia_d
@@ -144,7 +145,7 @@ mysqli_close($connessione);
     <input id="disabled" class="form-control form-control-dark w-100" type="text" placeholder="" aria-label="" disabled>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="login-pda.php">Esci dall'account</a>
+            <a class="nav-link" href="logout.php">Esci dall'account</a>
         </li>
     </ul>
 </header>
@@ -219,10 +220,25 @@ mysqli_close($connessione);
                             <td><?php echo $row['nome'];?></td>
                             <td><b><span class="badge bg-secondary"><?php echo $row['titolo'];?></span></td>
                             <td>
+                                <?php
+                                if($row['titolo']=="IN CODA")
+                                {
+                                ?>
                                 <div class="btn-group" role="group">
                                     <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
                                     <button class="btn btn-primary btn-sm" type="submit">Modifica</button>
                                 </div>
+                                <?php
+                                } else {
+                                ?>
+                                <form action="dashboard-cliente.php">
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-warning btn-sm" type="submit">Indietro</button>
+                                    </div>
+                                </form>
+                                <?php
+                                }
+                                ?>
                             </td>
                         </form>
                     </tr>

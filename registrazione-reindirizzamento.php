@@ -34,6 +34,7 @@ else if(isset($_POST['pda']))
         $query = "INSERT INTO pda VALUES ('$username_pda','$password_pda','$nome_pda','$citta_pda')";
         $result = mysqli_query($connessione, $query);
         include 'html/registrazione-pda-pagina-successo.html';
+        include 'logout-registrazione.php';
         header("refresh:3;url=login-pda.php");
     }
 }
@@ -57,6 +58,7 @@ else {
         $query = "INSERT INTO cliente VALUES ('$username_cliente','$password_cliente','$nome_cliente','$cognome_cliente','$telefono_cliente','$email_cliente')";
         $result = mysqli_query($connessione, $query);
         include 'html/registrazione-cliente-pagina-successo.html';
+        include 'logout-registrazione.php';
         header("refresh:3;url=login-cliente.php");
     }
 }

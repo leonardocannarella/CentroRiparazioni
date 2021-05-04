@@ -1,5 +1,6 @@
 <?php
 session_start();
+require ('controllo-credenziali-cliente.php');
 require ('connessione.php');
 
 $username_cliente = $_SESSION['username_cliente'];
