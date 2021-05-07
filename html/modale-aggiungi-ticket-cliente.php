@@ -1,6 +1,6 @@
 <?php
 require ('connessione.php');
-$query1 = "  SELECT * FROM pda";
+$query1 = "  SELECT * FROM pda ORDER BY citta";
 $result1 = mysqli_query($connessione, $query1);
 mysqli_close($connessione);
 
