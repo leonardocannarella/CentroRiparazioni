@@ -214,9 +214,9 @@ mysqli_close($connessione);
                             <td><?php echo $row['data_invio_richiesta'];?></td>
                             <td><?php echo $row['data_fine_stimata'];?></td>
                             <td><?php echo $row['cnome'] . " " . $row['cognome'];?></td>
-                            <td><input type="text" class="form-control" id="marca" name="marca" value="<?php echo $row['marca'];?>" required/></td>
-                            <td><input type="text" class="form-control" id="modello" name="modello" value="<?php echo $row['modello'];?>" required/></td>
-                            <td><input type="text" class="form-control" id="descrizione_problema" name="descrizione_problema" value="<?php echo $row['descrizione_problema'];?>" /></td>
+                            <td><input type="text" class="form-control" id="marca" name="marca" value="<?php echo $row['marca'];?>" <?php if($row['titolo']!="IN CODA") echo "readonly"?>/></td>
+                            <td><input type="text" class="form-control" id="modello" name="modello" value="<?php echo $row['modello'];?>" <?php if($row['titolo']!="IN CODA") echo "readonly"?>/></td>
+                            <td><input type="text" class="form-control" id="descrizione_problema" name="descrizione_problema" value="<?php echo $row['descrizione_problema'];?>" <?php if($row['titolo']!="IN CODA") echo "readonly"?> /></td>
                             <td><?php echo $row['prezzo'];?></td>
                             <td><?php echo $row['nome'];?></td>
                             <td><b><span class="badge bg-secondary"><?php echo $row['titolo'];?></span></td>

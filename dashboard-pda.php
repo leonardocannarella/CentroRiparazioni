@@ -131,7 +131,7 @@ $query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,d.marca,d.mod
             AND t.id_pda='{$_SESSION["username_pda"]}'
             AND (t.id_stato_intervento=1
             OR t.id_stato_intervento=2)
-            ORDER BY data_fine_stimata ASC";
+            ORDER BY titolo, data_fine_stimata ASC";
 
 $result = mysqli_query($connessione, $query);
 
