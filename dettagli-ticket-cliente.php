@@ -186,7 +186,6 @@ mysqli_close($connessione);
                     <tr>
                         <th>Data invio richiesta</th>
                         <th>Data fine stimata</th>
-                        <th>Nome e cognome cliente</th>
                         <th>Marca</th>
                         <th>Modello</th>
                         <th>Descrizione</th>
@@ -213,7 +212,6 @@ mysqli_close($connessione);
                         <form action="modifica-ticket-cliente.php" method="post">
                             <td><?php echo $row['data_invio_richiesta'];?></td>
                             <td><?php echo $row['data_fine_stimata'];?></td>
-                            <td><?php echo $row['cnome'] . " " . $row['cognome'];?></td>
                             <td><input type="text" class="form-control" id="marca" name="marca" value="<?php echo $row['marca'];?>" <?php if($row['titolo']!="IN CODA") echo "readonly"?>/></td>
                             <td><input type="text" class="form-control" id="modello" name="modello" value="<?php echo $row['modello'];?>" <?php if($row['titolo']!="IN CODA") echo "readonly"?>/></td>
                             <td><input type="text" class="form-control" id="descrizione_problema" name="descrizione_problema" value="<?php echo $row['descrizione_problema'];?>" <?php if($row['titolo']!="IN CODA") echo "readonly"?> /></td>

@@ -186,7 +186,6 @@ mysqli_close($connessione);
                     <tr>
                         <th>Data invio richiesta</th>
                         <th>Data fine stimata</th>
-                        <th>Nome e cognome cliente</th>
                         <th>Marca</th>
                         <th>Modello</th>
                         <th>Descrizione</th>
@@ -212,7 +211,6 @@ mysqli_close($connessione);
                         <form action="modifica-ticket-cliente.php" method="post">
                             <td><?php echo $row['data_invio_richiesta'];?></td>
                             <td><?php echo $row['data_fine_stimata'];?></td>
-                            <td><?php echo $row['cnome'] . " " . $row['cognome'];?></td>
                             <td><?php echo $row['marca'];?></td>
                             <td><?php echo $row['modello'];?></td>
                             <td><?php echo $row['descrizione_problema'];?></td>

@@ -129,7 +129,7 @@ $query = "  SELECT t.id,t.data_invio_richiesta,t.data_fine_stimata,p.nome,d.marc
             AND d.id_cliente=c.username
             AND c.username='{$_SESSION["username_cliente"]}'
             AND NOT t.id_stato_intervento=3
-            ORDER BY titolo, data_fine_stimata ASC";
+            ORDER BY data_fine_stimata ASC";
 
 $result = mysqli_query($connessione, $query);
 
