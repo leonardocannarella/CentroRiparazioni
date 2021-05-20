@@ -28,7 +28,7 @@ mysqli_close($connessione);
                             while($row1 = mysqli_fetch_array($result1))
                             {
                                 ?>
-                                <option value="<?php echo $row1['username'];?>"><?php echo $row1['citta'];?></option>
+                                <option value="<?php echo $row1['username'];?>"><?php echo $row1['nome'] . " - " . $row1['citta'];?></option>
                                 <?php
                             }
                             ?>

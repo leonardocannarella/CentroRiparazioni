@@ -31,7 +31,7 @@ else if(isset($_POST['pda']))
     }
     else
     {
-        $query = "INSERT INTO pda VALUES ('$username_pda','$password_pda','$nome_pda','$citta_pda')";
+        $query = "INSERT INTO pda VALUES ('$username_pda','$password_pda','$nome_pda','$citta_pda','')";
         $result = mysqli_query($connessione, $query);
         include 'html/registrazione-pda-pagina-successo.html';
         include 'logout-registrazione.php';

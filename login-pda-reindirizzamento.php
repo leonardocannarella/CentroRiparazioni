@@ -4,7 +4,7 @@ require ('connessione.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$query = "SELECT username, password, nome FROM pda WHERE username='$username' AND password='$password'";
+$query = "SELECT username, password, nome, attivo FROM pda WHERE username='$username' AND password='$password' AND attivo=1";
 $result = mysqli_query($connessione, $query);
 
 if (mysqli_num_rows($result) != 0)
