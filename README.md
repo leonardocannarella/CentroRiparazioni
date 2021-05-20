@@ -1,3 +1,2 @@
-# Centro Riparazioni - SITO WEB
-File dedicati all'elaborato di classe quinta.
-TRACCIA ELABORATO: [Riparazione.Telefoni.pdf](https://github.com/leonardocannarella/CentroRiparazioni/files/6397053/Riparazione.Telefoni.pdf)
+# Centro Riparazioni - SCHEMA E/R
+Sono stati aggiunti gli schemi: E/R e logico. Questi due schemi descrivono bene le entità del database, le varie relazioni che le legano e anche le foreign key (FK) che sono coinvolte nei legami. Il database è stato già riempito con dei dati in modo da verificarne il funzionamento. Il database è ospitato sul PHPMyAdmin di XAMPP in locale sul PC.
