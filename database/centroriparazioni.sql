@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 26, 2021 alle 23:00
+-- Creato il: Mag 26, 2021 alle 23:10
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -42,7 +42,6 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`username`, `password`, `nome`, `cognome`, `telefono`, `email`) VALUES
 ('alberto_verdi', 'alberto', 'Alberto', 'Verdi', '7478585896', 'albertoverdi@email.it'),
-('alessandro_paiardini', 'alessandro', 'Alessandro', 'Paiardini', '32145668987', 'a.paiardini@itisurbino.it'),
 ('cristian_signoretti', 'cristian', 'Cristian', 'Signoretti', '58478455656', 'Cristian135@outlook.it'),
 ('leonardo_cannarella', 'leonardo', 'Leonardo', 'Cannarella', '3412548963', 'leonardocannarella@prova.it'),
 ('luigi_bianchi', 'luigi', 'Luigi', 'Bianchi', '25479648885', 'luigibianchi@email.it'),
@@ -76,11 +75,9 @@ INSERT INTO `dispositivo` (`id`, `marca`, `modello`, `id_tipologia_dispositivo`,
 (30, 'Samsung', 'Galaxy Note9', 1, 'leonardo_cannarella'),
 (31, 'Huawei', 'P Smart', 1, 'matteo_baldaccioni'),
 (33, 'iPad', 'Air', 1, 'leonardo_cannarella'),
-(34, 'Google', 'Nest Hub', 1, 'leonardo_cannarella'),
 (35, 'LG QLED', '48', 2, 'leonardo_cannarella'),
 (36, 'Samsung', 'Galaxy S21+', 1, 'leonardo_cannarella'),
-(37, 'Laptop', 'HP 15.6', 1, 'nuriel_crescentini'),
-(38, 'Xiaomi', 'RedMi 9 Pro', 1, 'alessandro_paiardini');
+(37, 'Laptop', 'HP 15.6', 1, 'nuriel_crescentini');
 
 -- --------------------------------------------------------
 
@@ -160,11 +157,9 @@ INSERT INTO `ticket_intervento` (`id`, `descrizione_problema`, `data_invio_richi
 (24, 'Schermo danneggiato causa caduta da grande altezza. Controllare anche Hardware interno', '2021-05-13', '2021-05-31', 100.00, 'pda_pesaro', 30, 1),
 (25, 'Bolle nello schermo', '2021-05-14', '2021-05-22', 10.00, 'pda_frontino', 31, 3),
 (27, 'Connettore non va', '2021-05-17', '0000-00-00', 0.00, 'pda_fano', 33, 0),
-(28, 'Burn in problema', '2021-05-17', '0000-00-00', 0.00, 'pda_rimini', 34, 0),
 (29, 'Schermo crinato', '2021-05-17', '2021-05-30', 30.00, 'pda_ancona', 35, 1),
 (30, 'Touch rotto', '2021-05-17', '2021-05-31', 50.00, 'pda_pesaro', 36, 2),
-(31, 'Tastiera non funzionante', '2021-05-17', '0000-00-00', 0.00, 'pda_frontino', 37, 0),
-(32, 'Schermo rotto', '2021-05-26', '0000-00-00', 0.00, 'pda_pesaro', 38, 0);
+(31, 'Tastiera non funzionante', '2021-05-17', '0000-00-00', 0.00, 'pda_frontino', 37, 0);
 
 -- --------------------------------------------------------
 
@@ -238,13 +233,13 @@ ALTER TABLE `tipologia_dispositivo`
 -- AUTO_INCREMENT per la tabella `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT per la tabella `ticket_intervento`
 --
 ALTER TABLE `ticket_intervento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Limiti per le tabelle scaricate
@@ -254,16 +249,16 @@ ALTER TABLE `ticket_intervento`
 -- Limiti per la tabella `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  ADD CONSTRAINT `dispositivo_ibfk_1` FOREIGN KEY (`id_tipologia_dispositivo`) REFERENCES `tipologia_dispositivo` (`id`),
-  ADD CONSTRAINT `dispositivo_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`username`);
+  ADD CONSTRAINT `dispositivo_ibfk_1` FOREIGN KEY (`id_tipologia_dispositivo`) REFERENCES `tipologia_dispositivo` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `dispositivo_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`username`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `ticket_intervento`
 --
 ALTER TABLE `ticket_intervento`
-  ADD CONSTRAINT `ticket_intervento_ibfk_1` FOREIGN KEY (`id_pda`) REFERENCES `pda` (`username`),
-  ADD CONSTRAINT `ticket_intervento_ibfk_2` FOREIGN KEY (`id_dispositivo`) REFERENCES `dispositivo` (`id`),
-  ADD CONSTRAINT `ticket_intervento_ibfk_3` FOREIGN KEY (`id_stato_intervento`) REFERENCES `stato_intervento` (`id`);
+  ADD CONSTRAINT `ticket_intervento_ibfk_1` FOREIGN KEY (`id_pda`) REFERENCES `pda` (`username`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ticket_intervento_ibfk_2` FOREIGN KEY (`id_dispositivo`) REFERENCES `dispositivo` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ticket_intervento_ibfk_3` FOREIGN KEY (`id_stato_intervento`) REFERENCES `stato_intervento` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
