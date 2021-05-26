@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 25, 2021 alle 09:54
+-- Creato il: Mag 20, 2021 alle 09:53
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -48,6 +48,7 @@ INSERT INTO `cliente` (`username`, `password`, `nome`, `cognome`, `telefono`, `e
 ('mario_rossi', 'mario', 'Mario', 'Rossi', '1237548296', 'mariorossi@email.it'),
 ('matteo_baldaccioni', 'matteo', 'Matteo', 'Baldaccioni', '145266325544', 'matteo.baldaccioni@gmail.com'),
 ('matteo_ciaroni', 'matteo', 'Matteo', 'Ciaroni', '123456789', 'matteociaroni@gmail.com'),
+('nuriel', '123', 'Nuriel', 'Crescentini', '3665047724', 'nuriel.crescentini02@gmail.com'),
 ('nuriel_crescentini', 'nuriel', 'Nuriel', 'Crescentini', '3665047724', 'nuriel.crescentini02@gmail.com'),
 ('stefano_viola', 'stefano', 'Stefano', 'Viola', '4242868685', 'stefanoviola@email.it');
 

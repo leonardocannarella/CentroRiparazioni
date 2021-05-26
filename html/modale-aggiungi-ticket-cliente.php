@@ -1,6 +1,6 @@
 <?php
 require ('connessione.php');
-$query1 = "  SELECT * FROM pda ORDER BY citta";
+$query1 = "  SELECT * FROM pda WHERE attivo = 1 ORDER BY citta";
 $result1 = mysqli_query($connessione, $query1);
 mysqli_close($connessione);
 
@@ -20,7 +20,7 @@ mysqli_close($connessione);
             </div>
             <div class="modal-body">
                 <form action="./aggiungi-ticket-cliente-query.php" method="post">
-                    <h5>Centro Assistenza di riferimento</h5>
+                    <h5>Centro Riparazioni di riferimento</h5>
                     <div class="mb-3">
                         <select class="form-select" name="centro_assistenza" id="centro_assistenza" required>
                             <option value=""></option>

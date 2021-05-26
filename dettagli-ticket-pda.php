@@ -122,7 +122,7 @@ session_start();
 require ('controllo-credenziali-pda.php');
 require ('connessione.php');
 
-$query = "  SELECT t.id,t.data_invio_richiesta,t.descrizione_problema,t.prezzo,c.nome as cnome,c.cognome,t.data_fine_stimata,d.marca,p.nome,d.modello,s.titolo,td.descrizione as tipologia_d
+$query = "  SELECT t.id,t.data_invio_richiesta,t.descrizione_problema,t.prezzo,c.nome as cnome,c.cognome,c.telefono,c.email,t.data_fine_stimata,d.marca,p.nome,d.modello,s.titolo,td.descrizione as tipologia_d
             FROM ticket_intervento as t, dispositivo as d, cliente as c, stato_intervento as s, pda as p, tipologia_dispositivo as td
             WHERE t.id_pda=p.username 
             AND t.id_dispositivo=d.id
@@ -136,8 +136,6 @@ $result = mysqli_query($connessione, $query);
 $result1 = mysqli_query($connessione, $query);
 
 $row1 = mysqli_fetch_array($result1);
-
-mysqli_close($connessione);
 ?>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Centro Riparazioni</a>
@@ -193,7 +191,6 @@ mysqli_close($connessione);
                     <tr>
                         <th>Data invio richiesta</th>
                         <th>Data fine stimata</th>
-                        <th>Nome e cognome cliente</th>
                         <th>Marca</th>
                         <th>Modello</th>
                         <th>Descrizione</th>
@@ -222,7 +219,6 @@ mysqli_close($connessione);
                                     <td>
                                         <input type="date" class="form-control" id="data_fine_stimata" name="data_fine_stimata" value="<?php echo $row['data_fine_stimata'];?>" required/>
                                     </td>
-                                    <td><?php echo $row['cnome'] . " " . $row['cognome'];?></td>
                                     <td><?php echo $row['marca'];?></td>
                                     <td><?php echo $row['modello'];?></td>
                                     <td><input type="text" class="form-control" id="descrizione_problema" name="descrizione_problema" value="<?php echo $row['descrizione_problema'];?>" /></td>
@@ -256,9 +252,41 @@ mysqli_close($connessione);
                         ?>
                     </tbody>
                 </table>
+                <br /><br />
+                <?php
+                $result3 = mysqli_query($connessione, $query);
+                ?>
+                <h1 align="left" class="h2">Informazioni cliente</h1>
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php
+                            while($row3 = mysqli_fetch_array($result3)) {
+                            ?>
+                                <td><?php echo $row3['cnome']?></td>
+                                <td><?php echo $row3['cognome']?></td>
+                                <td><?php echo $row3['telefono']?></td>
+                                <td><?php echo $row3['email']?></td>
+                            <?php
+                            }
+                            ?>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </main>
     </div>
 </div>
+<?php
+mysqli_close($connessione);
+?>
 </body>
 </html>
