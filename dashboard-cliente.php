@@ -179,6 +179,13 @@ mysqli_close($connessione);
                 </div>
             </div>
 
+            <script>
+                function confermaEliminazione() {
+                    conferma = confirm("Sei sicuro di voler eliminare il ticket?");
+                    return conferma;
+                }
+            </script>
+
             <h2>I miei ticket</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -238,7 +245,7 @@ mysqli_close($connessione);
                                 if($row['titolo']=="IN CODA")
                                 {
                                     ?>
-                                <form action="elimina-ticket-cliente.php" method="post">
+                                <form action="elimina-ticket-cliente.php" onsubmit="return confermaEliminazione()" method="post">
                                     <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
                                     <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
                                 </form>

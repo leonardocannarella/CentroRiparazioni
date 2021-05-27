@@ -184,6 +184,13 @@ mysqli_close($connessione);
                 </div>
             </div>
 
+            <script>
+                function confermaEliminazione() {
+                    conferma = confirm("Sei sicuro di voler eliminare il ticket?");
+                    return conferma;
+                }
+            </script>
+
             <h2>Ticket in coda</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -223,7 +230,7 @@ mysqli_close($connessione);
                                         <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
                                         <button class="btn btn-primary btn-sm" type="submit">Assegna a me</button>
                                     </form>
-                                    <form action="elimina-ticket-pda.php" method="post">
+                                    <form action="elimina-ticket-pda.php" onsubmit="return confermaEliminazione()" method="post">
                                         <input name="id_ticket" value="<?php echo $row['id']?>" hidden/>
                                         <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
                                     </form>
