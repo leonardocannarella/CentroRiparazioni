@@ -73,7 +73,7 @@
             </div>
             <div class="col-md-6">
                 <label for="password1" class="form-label">Ripeti Password *</label>
-                <input type="password1" class="form-control" id="password1" name="password1" placeholder="Ripeti Password" required>
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="Ripeti Password" required>
             </div>
         </div>
 
