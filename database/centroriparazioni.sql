@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 26, 2021 alle 23:10
+-- Creato il: Giu 04, 2021 alle 11:17
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -42,12 +42,14 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`username`, `password`, `nome`, `cognome`, `telefono`, `email`) VALUES
 ('alberto_verdi', 'alberto', 'Alberto', 'Verdi', '7478585896', 'albertoverdi@email.it'),
+('alessandro_paiardini', 'alessandro', 'Alessandro', 'Paiardini', '32145668987', 'a.paiardini@itisurbino.it'),
 ('cristian_signoretti', 'cristian', 'Cristian', 'Signoretti', '58478455656', 'Cristian135@outlook.it'),
 ('leonardo_cannarella', 'leonardo', 'Leonardo', 'Cannarella', '3412548963', 'leonardocannarella@prova.it'),
 ('luigi_bianchi', 'luigi', 'Luigi', 'Bianchi', '25479648885', 'luigibianchi@email.it'),
 ('mario_rossi', 'mario', 'Mario', 'Rossi', '1237548296', 'mariorossi@email.it'),
 ('matteo_baldaccioni', 'matteo', 'Matteo', 'Baldaccioni', '145266325544', 'matteo.baldaccioni@gmail.com'),
 ('matteo_ciaroni', 'matteo', 'Matteo', 'Ciaroni', '123456789', 'matteociaroni@gmail.com'),
+('michela_piergiovanni', 'michela', 'Michela', 'Piergiovanni', '', 'm.piergiovanni@itisurbino.it'),
 ('nuriel_crescentini', 'nuriel', 'Nuriel', 'Crescentini', '3665047724', 'nuriel.crescentini02@gmail.com'),
 ('stefano_viola', 'stefano', 'Stefano', 'Viola', '4242868685', 'stefanoviola@email.it');
 
@@ -74,10 +76,11 @@ INSERT INTO `dispositivo` (`id`, `marca`, `modello`, `id_tipologia_dispositivo`,
 (28, 'iPhone 12', 'Pro Max', 1, 'leonardo_cannarella'),
 (30, 'Samsung', 'Galaxy Note9', 1, 'leonardo_cannarella'),
 (31, 'Huawei', 'P Smart', 1, 'matteo_baldaccioni'),
-(33, 'iPad', 'Air', 1, 'leonardo_cannarella'),
 (35, 'LG QLED', '48', 2, 'leonardo_cannarella'),
-(36, 'Samsung', 'Galaxy S21+', 1, 'leonardo_cannarella'),
-(37, 'Laptop', 'HP 15.6', 1, 'nuriel_crescentini');
+(37, 'Laptop', 'HP 15.6', 1, 'nuriel_crescentini'),
+(41, 'Xiaomi', 'RedMi 9 Pro', 1, 'alessandro_paiardini'),
+(47, 'Xiaomi', 'RedMi 9 Pro', 1, 'leonardo_cannarella'),
+(49, 'Samsung', 'Galaxy Note9', 1, 'matteo_baldaccioni');
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,7 @@ CREATE TABLE `pda` (
 INSERT INTO `pda` (`username`, `password`, `nome`, `citta`, `attivo`) VALUES
 ('pda_ancona', 'ancona', 'C.A. Ancona', 'Ancona', 1),
 ('pda_bologna', 'bologna', 'C.A. Bologna', 'Bologna', 1),
-('pda_cattolica', 'cattolica', 'C.A. Cattolica', 'Cattolica', 0),
+('pda_cattolica', 'cattolica', 'C.A. Cattolica', 'Cattolica', 1),
 ('pda_fano', 'fano', 'C.A. Fano', 'Fano', 1),
 ('pda_frontino', 'frontino', 'C.A. Frontino', 'Frontino', 1),
 ('pda_pesaro', 'pesaro', 'C.A. Pesaro', 'Pesaro', 1),
@@ -156,10 +159,9 @@ INSERT INTO `ticket_intervento` (`id`, `descrizione_problema`, `data_invio_richi
 (22, 'Schermo rotto', '2021-05-10', '2021-05-31', 50.00, 'pda_pesaro', 28, 3),
 (24, 'Schermo danneggiato causa caduta da grande altezza. Controllare anche Hardware interno', '2021-05-13', '2021-05-31', 100.00, 'pda_pesaro', 30, 1),
 (25, 'Bolle nello schermo', '2021-05-14', '2021-05-22', 10.00, 'pda_frontino', 31, 3),
-(27, 'Connettore non va', '2021-05-17', '0000-00-00', 0.00, 'pda_fano', 33, 0),
 (29, 'Schermo crinato', '2021-05-17', '2021-05-30', 30.00, 'pda_ancona', 35, 1),
-(30, 'Touch rotto', '2021-05-17', '2021-05-31', 50.00, 'pda_pesaro', 36, 2),
-(31, 'Tastiera non funzionante', '2021-05-17', '0000-00-00', 0.00, 'pda_frontino', 37, 0);
+(31, 'Tastiera non funzionante', '2021-05-17', '0000-00-00', 0.00, 'pda_frontino', 37, 0),
+(43, 'bravo leo', '2021-06-03', '0000-00-00', 0.00, 'pda_frontino', 49, 0);
 
 -- --------------------------------------------------------
 
@@ -233,13 +235,13 @@ ALTER TABLE `tipologia_dispositivo`
 -- AUTO_INCREMENT per la tabella `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT per la tabella `ticket_intervento`
 --
 ALTER TABLE `ticket_intervento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Limiti per le tabelle scaricate
